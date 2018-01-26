@@ -2,7 +2,7 @@
 require_once 'app/init.php';
 
 $itemsQuery = $db->prepare("
-     SELECT id, name, done
+     SELECT id, tarefa, done
         FROM items
         WHERE user = :user
 ");
@@ -16,7 +16,7 @@ $items = $itemsQuery->rowCount() ? $itemsQuery : [];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
         <title>Lista de tarefas</title>
@@ -35,7 +35,7 @@ $items = $itemsQuery->rowCount() ? $itemsQuery : [];
             <ul class="items">
                 <?php foreach ($items as $item): ?>
                     <li>
-                        <span class="item<?php echo $item['done'] ? ' done ' : '' ?>"><?php echo $item['name']; ?></span>
+                        <span class="item<?php echo $item['done'] ? ' done ' : '' ?>"><?php echo $item['tarefa']; ?></span>
                         <?php if (!$item['done']): ?>
                             <a href="mark.php?as=done&item=<?php echo $item['id']; ?>" class="done-button">Marcar</a>
                         <?php endif;?>
@@ -57,9 +57,6 @@ $items = $itemsQuery->rowCount() ? $itemsQuery : [];
         </div>
     </body>
 </html>
-
-
-
 
 
 

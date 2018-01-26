@@ -7,12 +7,12 @@ if(isset($_POST['name'])) {
 
     if (!empty($name)) {
         $addedQuery = $db->prepare("
-            INSERT INTO items (name, user, done, created)
-            VALUES (:name, :user, 0, NOW())
+            INSERT INTO items (tarefa, user, done, created)
+            VALUES (:tarefa, :user, 0, NOW())
         ");
 
         $addedQuery->execute([
-           'name' => $name,
+           'tarefa' => $name,
             'user' => $_SESSION['user_id']
 
         ]);
